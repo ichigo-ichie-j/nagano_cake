@@ -1,0 +1,12 @@
+<h2>ジャンル一覧・追加</h2>
+
+<%= form_with model: @genre do |f| %>
+ <table class="table table-borderless">
+    <tr>
+      <th><%= f.text_field :genrename, class:"form-control", placeholder:"ジャンル名" %></th>
+      <td><%= f.submit "新規登録", class:"btn btn-danger" %></td>
+    </tr>
+ </table>
+ <% end %>
+ 
+ 
