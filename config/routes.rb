@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'members/show'
+    get 'members/edit'
+    get 'members/update'
+    get 'members/unsubscribe'
+    get 'members/withdraw'
+  end
   devise_for :admin, controllers: {
   sessions:      'admin/sessions',
   }
