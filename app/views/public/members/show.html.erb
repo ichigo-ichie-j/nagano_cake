@@ -1,37 +1,49 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-offset-1 col-xs-8">
-      <h2 class="head-line title_h2 text-center">マイページ</h2>
-      <h4>登録情報　<%= link_to "編集する", public_members_edit_path, class: 'btn btn-success' %></h4>
-      <table class="table table-bordered ">
-      <thead>
-     	<tr>
-			 <td>氏名</td>
-			 <td><%= @member.last_name %>　<%= @member.first_name %></td>
-		  </tr>
-	    <tr>
-			 <td>カナ</td>
-		 	 <td><%= @member.kana_last_name %>　<%= @member.kana_first_name %></td>
-		  </tr>
-		  <tr>
-			 <td>郵便番号</td>
-			 <td><%= @member.postal_code %></td>
-		  </tr>
-		  <tr>
-			 <td>住所</td>
-			 <td><%= @member.residence %></td>
-		  </tr>
-		  <tr>
-			 <td>電話番号</td>
-			 <td><%= @member.phone_number %></td>
-		  </tr>
-      <tr>
-			 <td>メールアドレス</td>
-			 <td><%= @customer.email %></td>
-		  </tr>
-   	 </thead>
-	 </table>
+	 <div class="row py-5">
+	 	<div class="col-md-1"></div>
+	 	<div class="col-md-11">
+    	<h2 class="head-line title_h2 text-left">マイページ</h2>
     </div>
+   </div>
+   	 <div class="row">
+	      <h3>登録情報　<%= link_to "編集する", public_members_edit_path, class: 'btn btn-success' %></h4>
+	      <table class="table table-bordered ">
+		       <thead>
+						   <tr>
+								 <td>氏名</td>
+								 <td><%= @member.last_name %>　<%= @member.first_name %></td>
+							 </tr>
+							 <tr>
+								 <td>カナ</td>
+								 <td><%= @member.last_name_kana %>　<%= @member.first_name_kana %></td>
+							 </tr>
+							 <tr>
+								 <td>郵便番号</td>
+								 <td><%= @member.zip_code %></td>
+							 </tr>
+							 <tr>
+								 <td>住所</td>
+								 <td><%= @member.address %></td>
+							 </tr>
+							 <tr>
+								 <td>電話番号</td>
+								 <td><%= @member.phone_number %></td>
+							 </tr>
+						   <tr>
+								 <td>メールアドレス</td>
+								 <td><%= @member.email %></td>
+							 </tr>
+		   	   </thead>
+		    </table>
+	  <div>
+		<P><strong class="shipping-link">配送先</strong>
+		<%= link_to " 一覧を見る",  class:"btn btn-outline-primary" %>
+		</p>
+		<p><strong class="order-link">注文履歴</strong>
+	 <%= link_to " 履歴を見る",  class:"btn btn-outline-warning" %>
+   </p>
+	 </div>
   </div>
-</div>
+ </div>
+
 
