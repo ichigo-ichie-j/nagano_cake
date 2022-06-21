@@ -1,34 +1,34 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    resource :members, only: [:show, :edit, :update] do
-      collection do
-        get 'unsubscribe'
-        patch 'withdraw'
-      end
-    end
-    # get 'members/show
-    # get 'members/edit'
-    # patch 'members/update'
-    # get 'members/__END__bscribe'
-    # patch 'members/withdraw'
-  end
-  devise_for :admin, controllers: {
+  
+
+
+  # 管理者ルーティング
+  devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'admin/sessions',
   }
 
+  # 顧客ルーティング
+  devise_for :members,skip: [:passwords], controllers: {
 
-  devise_for :members, controllers: {
   sessions:      'public/sessions',
-  passwords:     'public/passwords',
   registrations: 'public/registrations'
   }
+
 
   namespace :admin do
     resources :members
   end
   scope module: :public do
-    resources :members
+    root to: "homes#top"
+    get 'about' => 'homes#about'
+      resource :members, only: [:show, :edit, :update] do
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
+    
   end
 
   # devise_for :members
