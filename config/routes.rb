@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   registrations: 'public/registrations'
   }
 
-
   namespace :admin do
     resources :members
     resources :genres, only: [:index, :edit, :create, :update]
+    resources :items, only: [:index, :edit, :create, :update, :new, :show]
+     resources :orders, only: [:update, :show]
     root to: 'homes#top'
   end
   scope module: :public do
@@ -26,9 +27,6 @@ Rails.application.routes.draw do
       patch 'withdraw'
     end
    end
+   resources :items, only: [:index, :show]
   end
-
-  # devise_for :members
-  # devise_for :admins
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
