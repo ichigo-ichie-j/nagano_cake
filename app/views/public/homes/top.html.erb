@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="col-md-8 offset-md-1">
+    
+    <div class="card" style="max-width: 600px;">
+      <img class="card-img" src="/assets/cake.jpeg" alt="">
+      <div class="card-img-overlay">
+        <p class="text-white">ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でないかたも商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。</p>
+      </div>
+    </div>
+
+
+    <h3>新着商品</h3>
+        <table class="table table-bordered">
+          <tbody>
+            <!--新着を5件表示-->
+            <% @items.first(5). each do |item| %>
+
+              <td>
+                <%= link_to item_path(item.id) do %>
+                  <!--アイテム画像を表示-->
+                  <%= attachment_image_tag item, :image, :fill, 150, 150 %>
+                <% end %>
+                  <!--商品名と税抜き価格のリンク表示-->
+                <p><%= link_to item.name, item_path(item.id) %></p>
+                <p><%= link_to item_path(item.id) do %>
+                   ¥<%= (item.price_no_tax * 1.1).floor %> 円</p>
+                   <% end %>
+              </td>
+            <% end %>
+          </tbody>
+      </table>
+  </div>
+  <div>
+    <div class="mb-4" align=right>
+    <!--アイテム一覧画面に飛ぶ-->
+   <%= link_to "全ての商品を見る", items_path %>
+  </div>
+</div>
