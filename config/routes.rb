@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
   namespace :public do
-    get 'members/show'
-    get 'members/edit'
-    get 'members/update'
-    get 'members/unsubscribe'
-    get 'members/withdraw'
+    resource :members, only: [:show, :edit, :update] do
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
+    # get 'members/show
+    # get 'members/edit'
+    # patch 'members/update'
+    # get 'members/__END__bscribe'
+    # patch 'members/withdraw'
   end
   devise_for :admin, controllers: {
   sessions:      'admin/sessions',
