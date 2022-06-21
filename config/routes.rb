@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'public/sessions',
   }
-  
+
   namespace :admin do
     resources :members, only: [:index, :show, :edit, :update]
     resources :order_items, only: [:update]
@@ -22,11 +22,13 @@ Rails.application.routes.draw do
   registrations: 'public/registrations'
   }
 
-  
+
   scope module: :public do
    root to: "homes#top"
    get 'about' => 'homes#about'
-    resource :members, only: [:show, :edit, :update] do
+   get 'member/edit' => 'members#edit'
+   patch 'member' => 'members#update'
+    resource :members, only: [:show] do
     collection do
       get 'unsubscribe'
       patch 'withdraw'
