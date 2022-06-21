@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :admin, controllers: {
-  sessions:      'admin/sessions',
+  #管理者ルーティング
+  devise_for :admin,skip: [:registrations, :passwords], controllers: {
+  sessions:      'public/sessions',
   }
 
-
-  devise_for :members, controllers: {
+  # 顧客ルーティング
+  devise_for :members,skip: [:passwords], controllers: {
   sessions:      'public/sessions',
-  passwords:     'public/passwords',
   registrations: 'public/registrations'
   }
 
@@ -18,7 +18,14 @@ Rails.application.routes.draw do
     root to: 'homes#top'
   end
   scope module: :public do
-    resources :members
+   root to: "homes#top"
+   get 'about' => 'homes#about'
+    resource :members, only: [:show, :edit, :update] do
+    collection do
+      get 'unsubscribe'
+      patch 'withdraw'
+    end
+   end
   end
 
   # devise_for :members

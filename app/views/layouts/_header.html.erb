@@ -1,0 +1,63 @@
+<header>
+  <!--会員がログインしている時 -->
+  <% if member_signed_in? %>
+     <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <span class="navbar-brand">LOGO</sapn>
+            <p class='ml-12'>ようこそ、<%= current_customer.full_name %>さん！</p>
+              <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                  <li class="mx-2"><%= link_to 'マイページ', members_path(current_customer), class:"btn btn-primary" %></li>
+                  <li class="mx-2"><%= link_to '商品一覧', items_path, class:"btn btn-primary" %></li>
+                  <li class="mx-2"><%= link_to 'カート', cart_items_path, class:"btn btn-primary" %></li>
+                  <li class="mx-2"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class:"btn btn-danger" %></li>
+                  <li class="mx-2">
+                    <%= form_with local: true do |f| %>
+                      <%= f.text_field 'search[value]' %>
+                      <%= f.submit :"検索" %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+        </div>
+      </nav>
+
+  <!-- 管理者がログインしている時 -->
+  <% elsif admin_signed_in? %>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <span class="navbar-brand">LOGO</span>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="mx-2"><%= link_to '商品一覧', admin_items_path, class:"btn btn-primary" %></li>
+            <li class="mx-2"><%= link_to '会員一覧', admin_members_path,class:"btn btn-primary" %></li>
+            <li class="mx-2"><%= link_to '注文履歴一覧', admin_orders_path, class:"btn btn-primary" %></li>
+            <li class="mx-2"><%= link_to 'ジャンル一覧', admin_genres_path, class:"btn btn-primary" %></li>
+            <li class="mx-2"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"btn btn-danger" %></li>              <li class="mx-2">
+              <%= form_with local: true do |f| %>
+                <%= f.text_field 'search[value]' %>
+                <%= f.submit :"検索" %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <!-- ログインしていない時 -->
+  <% else %>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <span class="navbar-brand">LOGO</span>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="mx-2"><%= link_to 'About', about_path, class:"nav-link text-dark" %></li>
+              <li class="mx-2"><%= link_to '商品一覧', items_path, class:"nav-link text-dark" %></li>
+              <li class="mx-2"><%= link_to '新規登録', new_member_registration_path, class:"nav-link text-dark" %></li>
+              <li class="mx-2"><%= link_to 'ログイン', new_member_session_path, class:"nav-link text-dark" %></li>
+            </ul>
+          </div>
+      </div>
+    </nav>
+  <% end %>
+  <p class="border-bottom"></p>
+</header>
