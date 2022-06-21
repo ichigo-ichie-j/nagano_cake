@@ -4,6 +4,17 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'public/sessions',
   }
+  
+  namespace :admin do
+    resources :members, only: [:index, :show, :edit, :update]
+    resources :order_items, only: [:update]
+    resources :genres, only: [:index, :edit, :create, :update]
+    resources :items, only: [:index, :edit, :create, :update, :new, :show]
+    resources :orders, only: [:update, :show]
+    root to: 'homes#top'
+  end
+
+
 
   # 顧客ルーティング
   devise_for :members,skip: [:passwords], controllers: {
@@ -11,13 +22,7 @@ Rails.application.routes.draw do
   registrations: 'public/registrations'
   }
 
-  namespace :admin do
-    resources :members
-    resources :genres, only: [:index, :edit, :create, :update]
-    resources :items, only: [:index, :edit, :create, :update, :new, :show]
-     resources :orders, only: [:update, :show]
-    root to: 'homes#top'
-  end
+  
   scope module: :public do
    root to: "homes#top"
    get 'about' => 'homes#about'
@@ -27,6 +32,18 @@ Rails.application.routes.draw do
       patch 'withdraw'
     end
    end
+   resources :cart_items, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+   resources :shipping_addresses, only: [:index, :create, :destroy, :edit, :update ]
+   resources :orders, only: [:new, :create, :index, :show] do
+     collection do
+       post 'confirm'
+       get 'complete'
+      end
+    end
    resources :items, only: [:index, :show]
   end
 end
