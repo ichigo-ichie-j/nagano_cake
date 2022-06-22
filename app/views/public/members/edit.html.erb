@@ -1,25 +1,15 @@
 <div class="container">
-
-
     <div class="row py-5">
-        <div class="p-3 mb-2 col-3 bg-secondary text-white"><h2 class="head-line title_h2 text-left">会員情報編集</h2></div>
-        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-1"></div>
         <div class="col-md-11">
-
+    <h2 class="head-line title_h2 text-left">会員情報編集</h2>
+    </div>
 
       <%= form_with model:@member, local:true do |f| %>
         <div class="form-group">
-            <div class="row">
-                <div class="col">
-                  <%= f.label :"氏名" %>
-                </div>
-                <div class="col">
-                <%= f.text_field :last_name, class: "form-control name" %>
-                </div>
-                <div class="col">
-                  <%= f.text_field :first_name, class: "form-control name" %>
-                </div>
-             </div>
+            <%= f.label :"氏名"%>
+            <%= f.text_field :last_name, class: "form-control name" %>
+            <%= f.text_field :first_name, class: "form-control name" %>
         </div>
 
         <div class="form-group">
@@ -28,11 +18,6 @@
             <%= f.text_field :first_name_kana, class: "form-control name" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"フリガナ" %>
-            <%= f.text_field :last_name_kana, class: "form-control name" %>
-            <%= f.text_field :first_name_kana, class: "form-control name" %>
-        </div>
 
         <div class="form-group">
             <%= f.label :"郵便番号" %>
@@ -61,5 +46,5 @@
         <div><%=link_to "退会する", unsubscribe_members_path, class: "btn btn-danger" %></div>
      <% end %>
      </div>
-
+</div>
 
