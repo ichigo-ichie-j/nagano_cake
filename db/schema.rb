@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2022_06_21_141157) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "SalesStatus", default: true, null: false
   end
 
   create_table "members", force: :cascade do |t|
