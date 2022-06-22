@@ -14,13 +14,12 @@ Rails.application.routes.draw do
     root to: 'homes#top'
   end
 
-
-
   # 顧客ルーティング
   devise_for :members,skip: [:passwords], controllers: {
   sessions:      'public/sessions',
   registrations: 'public/registrations'
   }
+
 
 
   scope module: :public do
