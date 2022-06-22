@@ -1,10 +1,32 @@
-<table class="table table-hover table-bordered">
-　  <thead class="table-secondary">
-　    <tr class="info" >
-       <th>郵便番号</th>
-       <th>住所</th>
-       <th>宛先</th>
-       <th colspan = "2"></th>
-　    </tr>
-　  </thead>
+<div class="container">
+   <div class="row ml-3 mb-3">
+    <h2 class="head-line title_h2 text-left bg-light d-inline-block">配送先登録/一覧</h2>
+   </div>
+   <%= render 'form',shipping_address:@shipping_address %>
 
+       <div class="row">
+	      <table class="table table-bordered ">
+	      <thead class="table-secondary">
+					<tr>
+						<th>郵便番号</th>
+						<th>住所</th>
+						<th>宛名</th>
+						<th></th>
+					</tr>
+		     </thead>
+		     <tbody>
+		     <% @shipping_addresses.each do |shipping_address| %>
+		     	<tr>
+		     		<td><%= shipping_address.delivery_code %></td>
+		     		<td><%= shipping_address.delivery_address %></td>
+		     		<td><%= shipping_address.address %></td>
+		     		<td>
+		     			<%= link_to "編集する", edit_shipping_address_path(shipping_address.id), class: 'btn btn-success' %>
+		     			<%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete, class: 'btn btn-danger' %>
+		     		</td>
+		     	</tr>
+		     	<% end %>
+		     </tbody>
+		    </table>
+       <div>
+</div>

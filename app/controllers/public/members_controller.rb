@@ -8,7 +8,7 @@ class Public::MembersController < ApplicationController
   end
 
   def update
-    @cmember = current_member
+    @member = current_member
     if @member.update(member_params)
        redirect_to members_path
     else
@@ -21,7 +21,7 @@ class Public::MembersController < ApplicationController
 
   def withdraw
      @member = current_member
-    @member.update(is_deleted: true)
+    @member.update(user_status: false)
     reset_session
     redirect_to root_path
   end
