@@ -1,7 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @item = Item.new(params[:id])
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(10)
   end
 
   def create
@@ -23,9 +22,9 @@ class Admin::ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.new(item_params)
-    @item.update(item_params)
-    redirect_to admin_item_path(@item.id)
+    item = Item.find(params[:id])
+    item.update(item_params)
+    redirect_to admin_item_path(item.id)
   end
 
   private
