@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-2">
+    </div>
+    <!--<div class="col-1">-->
+    <!--  <%= render 'layouts/search_side_bar', genres: @genres %>-->
+    <!--</div>-->
+    <div class="col-7">
+      <h3 class="m-4">商品一覧（全 <%= @quantity %> 件）</h3>
+        <div class="items">
+          <div class="row">
+            <% @items.each do |item| %>
+              <div class="col-3 p-2">
+              <!--アイテム画像表示-->
+                <%= link_to item_path(item.id) do %>
+                  <%= image_tag item.get_product_image(200,200)%>
+                <% end %><br>
+                <!--商品名、税抜き価格を表示-->
+                <%= item.name %><br>
+                <% if item.is_active == true %>
+                  <%= item.price %>円
+                <% end %>
+                <% if item.is_active == true %>
+                  <a class="text-success">販売中</a>
+                <% else %>
+                  売切れ
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
