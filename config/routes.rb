@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'admin/sessions'
   }
-  
+
   namespace :admin do
     resources :members, only: [:index, :show, :edit, :update]
     resources :order_items, only: [:update]
@@ -14,15 +14,14 @@ Rails.application.routes.draw do
     root to: 'homes#top'
   end
 
-
-
   # 顧客ルーティング
   devise_for :members,skip: [:passwords], controllers: {
   sessions:      'public/sessions',
   registrations: 'public/registrations'
   }
 
-  
+
+
   scope module: :public do
    root to: "homes#top"
    get 'about' => 'homes#about'
