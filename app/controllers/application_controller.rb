@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admin_root_path
-    when Customer
+    when Member
       root_path
     end
   end
