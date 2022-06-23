@@ -1,0 +1,16 @@
+<h3>注文履歴詳細</h3>
+
+ <label>購入者</label>
+   <!--余裕があれば購入者の購入履歴へのリンクをつける-->
+    <%= @order.name %><br>
+ <label>注文日</label>
+    <%= @order.created_at.to_s(:datetime_jp) %><br>
+ <label>配送先</label>
+    <%= @order.delivery_address %><br>
+ <label>支払方法</label>
+    <%= @order.payment_method %><br>
+ <label>注文ステータス</label>
+    <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
+      <%= f.select :order, Order.request_statuses.keys.map {|k| [Order.request_statuses_i18n[k], k]} %>
+      <%= f.submit '更新', class: 'btn btn-success' %>
+    <% end %>
