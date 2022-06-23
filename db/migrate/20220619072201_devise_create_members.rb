@@ -39,7 +39,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.string :zip_code
       t.text :address
       t.string :phone_number
-      t.boolean :user_status
+      t.boolean :user_status, default: true
 
       t.timestamps null: false
     end

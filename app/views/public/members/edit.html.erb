@@ -1,54 +1,47 @@
-<div class="container"> 
-    <div class="row py-5">
-        <div class="col-md-1"></div>
-        <div class="col-md-11">
-    <h2 class="head-line title_h2 text-left">会員情報編集</h2>
+<div class="container">
+    <div class="row ml-3 mb-5 mt-3">
+    <h2 class="head-line title_h2 text-left bg-light d-inline-block">会員情報編集</h2>
     </div>
 
       <%= form_with model:@member, local:true do |f| %>
-        <div class="form-group">
-            <%= f.label :"氏名" %>
-            <%= f.text_field :last_name, class: "form-control name" %>
-            <%= f.text_field :first_name, class: "form-control name" %>
+        <div class="form-group row">
+            <%= f.label :"氏名", class: "col-md-3" %>
+            <%= f.text_field :last_name, class: "form-control name col-md-4" %>
+            <%= f.text_field :first_name, class: "form-control name col-md-4 offset-md-1" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"フリガナ" %>
-            <%= f.text_field :last_name_kana, class: "form-control name" %>
-            <%= f.text_field :first_name_kana, class: "form-control name" %>
+        <div class="form-group row">
+            <%= f.label :"フリガナ", class: "col-md-3" %>
+            <%= f.text_field :last_name_kana, class: "form-control name col-md-4" %>
+            <%= f.text_field :first_name_kana, class: "form-control name col-md-4 offset-md-1" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"フリガナ" %>
-            <%= f.text_field :last_name_kana, class: "form-control name" %>
-            <%= f.text_field :first_name_kana, class: "form-control name" %>
+
+        <div class="form-group row">
+            <%= f.label :"郵便番号",class: "col-md-3" %>
+            <%= f.text_field :zip_code, class: "form-control name col-md-9" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"郵便番号" %>
-            <%= f.text_field :zip_code, class: "form-control name" %>
+        <div class="form-group row">
+            <%= f.label :"住所",class: "col-md-3" %>
+            <%= f.text_field :address, class: "form-control name col-md-9" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"住所" %>
-            <%= f.text_field :address, class: "form-control name" %>
+        <div class="form-group row">
+            <%= f.label :"電話番号",class: "col-md-3" %>
+            <%= f.text_field :phone_number, class: "form-control name col-md-9" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"電話番号" %>
-            <%= f.text_field :phone_number, class: "form-control name" %>
+        <div class="form-group row">
+            <%= f.label :"メールアドレス",class: "col-md-3" %>
+            <%= f.text_field :email, class: "form-control name col-md-9" %>
         </div>
 
-        <div class="form-group">
-            <%= f.label :"メールアドレス" %>
-            <%= f.text_field :email, class: "form-control name" %>
+        <div class="form-group row">
+           <%= f.submit "変更内容を保存", class: 'btn btn-success ' %>
         </div>
+        <div><%=link_to "退会する", unsubscribe_members_path, class: "btn btn-danger" %></div>
 
-        <div class="form-group">
-           <%= f.submit "変更内容を保存", class: 'btn btn-success' %>
-        </div>
-
-        <div><%=link_to "退会する", unsubscribe_public_members_path, class: "btn btn-danger" %></div>
      <% end %>
-
+</div>
 

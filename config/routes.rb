@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   scope module: :public do
    root to: "homes#top"
    get 'about' => 'homes#about'
-    resource :members, only: [:show, :edit, :update] do
+   get 'member/edit' => 'members#edit'
+   patch 'member' => 'members#update'
+    resource :members, only: [:show] do
     collection do
       get 'unsubscribe'
       patch 'withdraw'
