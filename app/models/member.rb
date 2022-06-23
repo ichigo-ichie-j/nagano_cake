@@ -7,5 +7,5 @@ class Member < ApplicationRecord
 
  def active_for_authentication?
     super && (user_status == true)
-  end
  end
+end
