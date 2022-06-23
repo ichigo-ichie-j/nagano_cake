@@ -8,12 +8,22 @@ class Public::MembersController < ApplicationController
   end
 
   def update
+    @member = current_member
+    if @member.update(member_params)
+       redirect_to members_path
+    else
+       render :edit
+    end
   end
 
   def unsubscribe
   end
 
   def withdraw
+     @member = current_member
+    @member.update(user_status: false)
+    reset_session
+    redirect_to root_path
   end
 
   private
