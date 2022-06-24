@@ -6,7 +6,6 @@ class Public::HomesController < ApplicationController
   end
     
   def about
-    @items = Item.all.order(created_at: :desc)
   end
 
 end
