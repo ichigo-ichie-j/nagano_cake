@@ -1,5 +1,8 @@
-<h5>注文履歴一覧</h5>
-    <table class="table">
+<div class="container">
+	  <div class="row ml-3 mb-5 mt-3">
+      <h2 class="head-line title_h2 text-left bg-light d-inline-block">注文履歴一覧</h2>
+    </div>
+<table class="table">
      <thead>
       <tr>
         <th>購入日時</th>
@@ -25,4 +28,7 @@
       <% end %>
      </tbody>
     </table>
-    <%= paginate @orders %>
+    <ul class="pagination justify-content-center">
+     <%= paginate @orders %>
+    </ul>
+  </div>

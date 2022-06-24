@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'orders/show'
-    get 'orders/update'
-  end
-  namespace :admin do
-    get 'order_items/update'
-  end
   #管理者ルーティング
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'admin/sessions'
