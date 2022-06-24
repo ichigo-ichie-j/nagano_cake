@@ -20,7 +20,7 @@
           <td>
             <%= @order_items.where(order_id: order.id).sum(:item_quantity) %>
           </td>
-          <td><%= order.request_status %></td>
+          <td><%= order.request_status_i18n %></td>
         </tr>
       <% end %>
      </tbody>
