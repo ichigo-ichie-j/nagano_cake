@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  # before_action :authenticate_member!
+
   def new
     @order = Order.new
     @addresses = current_member.shipping_addresses
@@ -7,13 +9,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_member.orders
+   @orders = current_member.orders
   end
 
   def show
-    @order = current_member.orders.find(params[:id])
-    @order_items = @order.order_items
-  end
+   @order = Order.find(params[:id])
+   @total = @order.invoice_amount+@order.postage
 
   def confirm
     @cart_items = CartItem.all
@@ -86,4 +87,5 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:payment_method,:member_id,:delivery_code,:address,:delivery_address,:item_id,:invoice_amount,:postage,:request_status)
   end
+
 end
