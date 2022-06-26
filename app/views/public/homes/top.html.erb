@@ -21,12 +21,12 @@
               <td>
                 <%= link_to item_path(item.id) do %>
                   <!--アイテム画像を表示-->
-                  <%= attachment_image_tag item, :image, :fill, 150, 150 %>
+                  <%= image_tag item.image, size: "300x200" %>
                 <% end %>
                   <!--商品名と税抜き価格のリンク表示-->
                 <p><%= link_to item.name, item_path(item.id) %></p>
                 <p><%= link_to item_path(item.id) do %>
-                   ¥<%#= (item.price_no_tax * 1.1).floor %> 円</p>
+                   ¥<%= (item.non_taxed_price * 1.1).floor %> 円</p>
                    <% end %>
               </td>
             <% end %>

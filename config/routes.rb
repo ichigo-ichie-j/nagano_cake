@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'admin/sessions'
   }
-  
- 
+
+
   namespace :admin do
     resources :members, only: [:index, :show, :edit, :update]
     resources :order_items, only: [:update]
