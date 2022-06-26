@@ -18,7 +18,7 @@
             <tr>
               <td>
                 <!--カートに入れた商品の画像を表示-->
-                <%= image_tag cart_item.item.image, size: "100x100" %>
+                <%= image_tag cart_item.item.get_image, size: "100x100" %>
                 <%= cart_item.item.name %>
               </td>
               <!--カートに入れた商品の値段・個数を表示-->

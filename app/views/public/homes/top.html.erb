@@ -14,23 +14,29 @@
       </div>
 
     <h3>新着商品</h3>
-      <table class="table table-bordered">
-        <tbody>
-          <!--新着を5件表示-->
-          <% @items.first(4). each do |item| %>
-            <td>
-              <%= link_to item_path(item.id) do %>
-              <!--アイテム画像を表示-->
-                <%= image_tag item.image, size: "300x200" %>
-              <% end %>
-              <!--商品名と税抜き価格のリンク表示-->
-              <p><%= link_to item.name, item_path(item.id) %></p>
-              <p><%= link_to item_path(item.id) do %>
-                ¥<%= (item.non_taxed_price * 1.1).floor %> 円</p>
-                  <% end %>
-            </td>
-          <% end %>
-        </tbody>
+
+        <table class="table table-bordered">
+          <tbody>
+            <!--新着を5件表示-->
+            <% @items.first(4). each do |item| %>
+
+              <td>
+                <%= link_to item_path(item.id) do %>
+                  <!--アイテム画像を表示-->
+
+                  <%= image_tag item.get_image, size: "300x200" %>
+
+                <% end %>
+                  <!--商品名と税抜き価格のリンク表示-->
+                <p><%= link_to item.name, item_path(item.id) %></p>
+                <p><%= link_to item_path(item.id) do %>
+                   ¥<%= (item.non_taxed_price * 1.1).floor %> 円</p>
+                   <% end %>
+              </td>
+            <% end %>
+          </tbody>
+
+    
       </table>
     </div>
   </div>
