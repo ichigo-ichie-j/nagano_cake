@@ -15,6 +15,7 @@ class Public::OrdersController < ApplicationController
   def show
    @order = Order.find(params[:id])
    @total = @order.invoice_amount+@order.postage
+  end
 
   def confirm
     @cart_items = CartItem.all
