@@ -9,7 +9,16 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-
+  
+  def after_sign_out_path_for(resource)
+    case resource
+    when Admin
+      admin_root_path
+    when Member
+      root_path
+    end
+  end
+  
   protected
 
   def configure_permitted_parameters
