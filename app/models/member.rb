@@ -6,7 +6,6 @@ class Member < ApplicationRecord
   has_many :shipping_addresses
   has_many :order_items
   has_many :orders
-  belongs_to :members
 
  def active_for_authentication?
     super && (user_status == true)
