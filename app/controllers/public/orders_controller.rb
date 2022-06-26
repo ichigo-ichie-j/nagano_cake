@@ -15,6 +15,7 @@ class Public::OrdersController < ApplicationController
   def show
    @order = Order.find(params[:id])
    @total = @order.invoice_amount+@order.postage
+  end
 
   def confirm
     @cart_items = CartItem.all
@@ -24,7 +25,7 @@ class Public::OrdersController < ApplicationController
         # ここにはカレントカスタマーの住所が飛んできます
           @order.delivery_address = current_member.address
           @order.delivery_code = current_member.zip_code
-          @order.address = current_member.first_name + current_member.last_name
+          @order.address = current_member.last_name + current_member.first_name
       elsif params[:order][:address_number] == "2"
         # ここには選択した住所のIDが飛んできます
           @shipping_address = ShippingAddress.find(params[:order][:address_id].to_i)
@@ -59,6 +60,8 @@ class Public::OrdersController < ApplicationController
     # ログインユーザーのカートアイテムをすべて取り出して order_items に入れます
       @order = Order.new(order_params)
     # 渡ってきた値を @order に入れます
+    # 購入完了した段階でステータスは０になるので保存前に０をセットします
+      @order.request_status = 0
       if @order.save
     # ここに至るまでの間にチェックは済ませていますが、念の為IF文で分岐させています
         @cart_items.each do |cart|
@@ -69,8 +72,10 @@ class Public::OrdersController < ApplicationController
           order_item.order_id = @order.id
           order_item.item_quantity = cart.item_quantity
         # 購入が完了したらカート情報は削除するのでこちらに保存します
-          order_item.ordered_price = cart.item.non_taxed_price
+          order_item.ordered_price = cart.item.add_tax_non_taxed_price
         # カート情報を削除するので item との紐付けが切れる前に保存します
+        # 購入完了した段階でステータスは０になるので保存前に０をセットします
+         order_item.production_status = 0
           order_item.save
         end
         # ユーザーに関連するカートのデータ(購入したデータ)が保存されているので
