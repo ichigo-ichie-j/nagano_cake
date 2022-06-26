@@ -20,8 +20,8 @@
           <% if member_signed_in? %>
           <%= form_with model:@cart_item, url: cart_items_path, local:true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.hidden_field :customer_id, value: current_member.id %>
-            <%= f.select :quantity, *[1..10] %>
+            <%= f.hidden_field :member_id, value: current_member.id %>
+            <%= f.select :item_quantity, *[1..10] %>
             <%= f.submit 'カートに入れる', class:"btn btn-success" %>
           <% end %>
           <% end %>
