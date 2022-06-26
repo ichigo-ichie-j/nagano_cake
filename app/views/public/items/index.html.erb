@@ -1,31 +1,34 @@
- <div class="container">
-  <div class="col-md-4 mr-5">
+<div class="container">
+  <div class="col-2"></div>
+  <!--ジャンル検索機能の追加-->
+  <div class="col-1">
+    <%= render 'layouts/search_side_bar', genres: @genres %>
+  </div>
+  
+  <div class="col-7">
     <!--商品一覧何件表示-->
   　　<h2>商品一覧   (全<%= Item.count %>件)</h2>
-  　　<div class="col-md-8 offset-md-1">
-        <table class="table table-hover table-inverse">
-          <tbody>
-            <div class="card-list-container pt-6row">
-              <!--新着を４件表示-->
+<!--新着を４件表示-->
+          <div class="row">
               <% @items.each do |item| %>
-                <td>
+                <div class="item col-md-3 px-1" >
                   <!--アイテム画像表示-->
                   <%= link_to item_path(item.id) do %>
                     <!--アイテム画像を表示-->
+
                     <%= image_tag item.get_image, size: "300x200" %>
+
                   <% end %>
                     <!--商品名と税抜き価格のリンク表示-->
                   <p><%= link_to item.name, item_path(item.id) %></p>
                   <p><%= link_to item_path(item.id) do %>
                      ¥<%= (item.non_taxed_price * 1.1).floor %> 円</p>
                      <% end %>
-                </td>
+                </div>
               <% end %>
+
             </div>
-          </tbody>
-        </table>
       </div>
-  </div>
   <div>
       <!--kaminariで8件表示 -->
       <%= paginate @items %>
