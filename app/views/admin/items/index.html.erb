@@ -1,5 +1,7 @@
-<h2>商品一覧</h2>
-
+<div class="container">
+	  <div class="row ml-3 mb-5 mt-3">
+      <h2 class="head-line title_h2 text-left bg-light d-inline-block">商品一覧</h2>
+    </div>
 <table class="table">
   <thead>
     <tr>
@@ -28,7 +30,7 @@
     <% end %>
   </tbody>
 </table>
-  <div class="text-center">
+　<ul class="pagination justify-content-center">
    <%= paginate @items %>
-  </div>
- 
+  </ul>
+</div>

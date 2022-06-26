@@ -1,7 +1,10 @@
-<h2>商品編集</h2>
-
+<div class="container">
+	  <div class="row ml-3 mb-5 mt-3">
+      <h2 class="head-line title_h2 text-left bg-light d-inline-block">商品編集</h2>
+    </div>
+  <div class="col-md-6 offset-md-3">
 <%= form_with model: @item, url:admin_item_path(@item.id) do |f| %>
-<table class="table">
+<table>
  <tr>
   <th>商品画像</th>
   <td><%= f.file_field :image, placeholder:"商品画像", accept: "image/*"%></td>
@@ -27,10 +30,10 @@
   <td><%= f.select :sales_status, {"販売中": true, "販売停止中": false} %></td>
  </tr>
 </table>
-<div class="row">
- <div class="col-xs-4 col-xs-offset-8">
-  <%= f.submit '変更を保存', class: "btn btn-success btn-block" %>
+　<div class="d-grid gap-2 col-6 mx-auto">
+  　<%= f.submit '変更を保存', class: "btn btn-success" %>
+  </div>
   <% end %>
+ 　</div>
  </div>
-</div>
 
