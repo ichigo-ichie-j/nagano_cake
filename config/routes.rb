@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'orders/new'
+    get 'orders/confirm'
+    get 'orders/complete'
+    get 'orders/index'
+    get 'orders/show'
+  end
+  namespace :admin do
+    get 'members/index'
+    get 'members/show'
+    get 'members/edit'
+  end
   #管理者ルーティング
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions:      'admin/sessions'
   }
-  
- 
+
+
   namespace :admin do
     resources :members, only: [:index, :show, :edit, :update]
     resources :order_items, only: [:update]
