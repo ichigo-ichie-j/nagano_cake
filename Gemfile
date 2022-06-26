@@ -65,3 +65,5 @@ gem "refile-mini_magick"
 gem 'pry-byebug', group: :development
 
 gem "enum_help"
+
+gem 'font-awesome-sass', '~> 5.15.1'
