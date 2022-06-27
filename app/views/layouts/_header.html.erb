@@ -2,7 +2,6 @@
 <!-- 管理者がログインしている時 -->
   <% if admin_signed_in? %>
     <nav class="navbar navbar-expand-lg">
-      <div class="container">
         <span class="navbar-brand">
           <%= link_to root_path do %>
             <%= image_tag 'Nagano.png', size: "200x50" %>
@@ -23,7 +22,6 @@
             </li>
           </ul>
         </div>
-      </div>
     </nav>
   <!--会員がログインしている時 -->
   <% elsif member_signed_in? %>
@@ -54,7 +52,6 @@
  <!-- ログインしていない時 -->
   <% else %>
     <nav class="navbar navbar-expand-lg">
-      <div class="container">
         <span class="navbar-brand">
           <%= link_to root_path do %>
             <%= image_tag 'Nagano.png', size: "200x50" %>
@@ -74,7 +71,6 @@
               </li>
             </ul>
           </div>
-      </div>
     </nav>
   <% end %>
   <p class="border-bottom"></p>
