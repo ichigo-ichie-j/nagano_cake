@@ -1,7 +1,9 @@
 <div class="container">
-  <div class="col-md-8 offset-md-1">
-
-    <div class="card" style="max-width: 600px;">
+  <div class="row">
+    <div class="col-md-2"></div>
+    
+    <div class="col-md-7">
+      <div class="card" style="max-width: 600px;">
       <img class="card-img" src="/assets/cake.jpeg" alt="">
       <div class="card-img-overlay">
         <p class="text-white">ようこそ、ながのCAKEへ！<br>
@@ -9,20 +11,20 @@
         会員でないかたも商品の閲覧はできますが、<br>
         購入には会員登録が必要になります。</p>
       </div>
-    </div>
-
+      </div>
 
     <h3>新着商品</h3>
+
         <table class="table table-bordered">
           <tbody>
             <!--新着を5件表示-->
-            <% @items.first(5). each do |item| %>
+            <% @items.first(4). each do |item| %>
 
               <td>
                 <%= link_to item_path(item.id) do %>
                   <!--アイテム画像を表示-->
 
-                  <%= image_tag item.image, size: "300x200" %>
+                  <%= image_tag item.get_image, size: "300x200" %>
 
                 <% end %>
                   <!--商品名と税抜き価格のリンク表示-->
@@ -33,8 +35,12 @@
               </td>
             <% end %>
           </tbody>
+
+    
       </table>
+    </div>
   </div>
+  
   <div>
     <div class="mb-4" align=right>
     <!--アイテム一覧画面に飛ぶ-->
