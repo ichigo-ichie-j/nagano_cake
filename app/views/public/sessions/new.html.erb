@@ -41,17 +41,19 @@
 <% end %>
 
 <div class="row pt-4">
-  <div class="col-4">
-  </div>
+  <div class="col-4"></div>
   <div class="col-4">
     <p class="bg-light d-flex align-items-center justify-content-center w-50">会員登録がお済みでない方</p>
   </div>
 </div>
 
 <div class="row my-3">
-  <div class="col-5">
-  </div>
+  <div class="col-4"></div>
   <div class="col-7">
     <%= link_to "こちら", new_member_registration_path %>から新規登録を行って下さい。
   </div>
-</div>
+  <div class="col-1">
+    <%= link_to new_admin_session_path do %>
+      <i class="fas fa-home"></i>
+    <% end %>
+  </div>

@@ -6,6 +6,15 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_root_path
     when Member
+      members_path(current_member)
+    end
+  end
+
+  def after_sign_out_path_for(resource)
+    case resource
+    when :admin
+      new_admin_session_path
+    when :member
       root_path
     end
   end
@@ -13,6 +22,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kane, :last_name_kana, :zip_code, :address, :phone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :zip_code, :address, :phone_number])
   end
 end

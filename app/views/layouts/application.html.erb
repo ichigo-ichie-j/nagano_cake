@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -17,7 +17,10 @@
     <main>
     <%= yield %>
     </main>
-    <footer class="border-top">
+   <footer>
+      <div class="mt-5  border-top mg">
+        <div class="row"></div>
+      </div>
     </footer>
   </body>
 </html>

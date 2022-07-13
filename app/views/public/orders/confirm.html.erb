@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--カートに入れた商品を一覧-->
+      <h2>注文情報確認</h2>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </thead>
+          <tbody>
+          <!--カートに入れた商品を表示-->
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                <!--カートに入れた商品の画像を表示-->
+                <%= image_tag cart_item.item.get_image, size: "100x100" %>
+                <%= cart_item.item.name %>
+              </td>
+              <!--カートに入れた商品の値段・個数を表示-->
+              <td><%= cart_item.item.add_tax_non_taxed_price.to_s(:delimited) %></td>
+              <td><%= cart_item.item_quantity %></td>
+              <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+              <% @cart_item_total_price += cart_item.subtotal %>
+            </tr>
+          <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        　<!-- 金額・お届け先を表示 -->
+          <tbody>
+            <tr>
+              <td>送料</td>
+              <td>800円</td>
+            </tr>
+            <tr>
+              <td>商品合計</td>
+              <td><%= @cart_item_total_price.to_s(:delimited) %>円</tb>
+            </tr>
+            <tr>
+              <td>請求金額</td>
+              <td><%= (@cart_item_total_price+ 800).to_s(:delimited)  %>円</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <div class="col-4">
+          <div class="col-md-12">
+            <strong>お支払い方法</strong><br>
+            <span><p><%= @order.payment_method_i18n %></p></span>
+          </div>
+          <div class="col-md-12">
+            <strong>お届け先</strong>
+            <span>
+              <p>
+                〒<%= @order.delivery_code %><br>
+                <%= @order.delivery_address %><br>
+                <%= @order.address %>
+              </p>
+            </span>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2  mx-auto">
+　　　　　　<!--注文を保存-->
+            <%= form_with model:@order, url:orders_path, local:true do |f| %>
+              <%= f.hidden_field :delivery_code, value: @order.delivery_code %>
+              <%= f.hidden_field :member_id, value: current_member.id %>
+              <%= f.hidden_field :delivery_address, value: @order.delivery_address %>
+      　       <%= f.hidden_field :address, value: @order.address %>
+      　       <%= f.hidden_field :postage, value: 800 %>
+      　       <%= f.hidden_field :invoice_amount, value: @cart_item_total_price %>
+      　       <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      　       <!--確認画面に進むとカートの商品が削除される-->
+              <%= f.submit "注文を確定する", class: "btn btn-sm btn-success" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
